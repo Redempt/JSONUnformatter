@@ -23,10 +23,17 @@ void run_test(string name, void (*test) ()) {
     }
 }
 
+void testIndent() {
+    string jsonString = "{\"Dog\": {\"Name\" : \"Daisy\", \"Breed\" : \"Beagle\"}}";
+    string expectedFormat = "{\n\t\"Dog\":\n\t\t{\n\t\t\"Name\" : \"Daisy\",\n\t\t\"Breed\" : \"Beagle\"\n\t\t}\n}";
+    assertEquals(expectedFormat, insertIndentation(jsonString));
+}
+
 void test1() {
     assertEquals("1", "2");
 }
 
 int main() {
     run_test("test1", test1);
+    run_test("testIndent", testIndent);
 }
