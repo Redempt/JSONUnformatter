@@ -3,4 +3,4 @@ project(JSONUnformatter LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(JSONUnformatter main.cpp test.cpp)
+add_executable(JSONUnformatter test.cpp)

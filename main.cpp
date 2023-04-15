@@ -1,5 +1,10 @@
 #include <iostream>
+using namespace std;
 
-void thing() {
+string unformat(string json) {
+    return json;
+}
 
+string insertIndentation(string json) {
+    return json;
 }
