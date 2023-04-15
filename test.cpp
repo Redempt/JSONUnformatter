@@ -59,7 +59,7 @@ void runTest(string name, void (*test) ()) {
 
 void testIndent() {
     string jsonString = "{\"Dog\": {\"Name\" : \"Daisy\", \"Breed\" : \"Beagle\"}}";
-    string expectedFormat = "{\n\t\"Dog\":\n\t\t{\n\t\t\"Name\" : \"Daisy\",\n\t\t\"Breed\" : \"Beagle\"\n\t\t}\n}";
+    string expectedFormat = "{\n\t\"Dog\":\n\t\t{\n\t\t\t\"Name\" : \"Daisy\",\n\t\t\t\t\"Breed\" : \"Beagle\"\n\t\t\t\t\t}\n\t\t\t\t\t\t}";
     assertEquals(expectedFormat, insertIndentation(jsonString));
 }
 
@@ -91,6 +91,18 @@ void testShuffleKeys() {
     string unformatted = unformat(json);
     auto shuffledKeys = getKeys(unformatted);
     assertNotEquals(keys, shuffledKeys);
+}
+
+void testSpecialFeature1() {
+    string json = R"([1, 2])";
+    string expected = R"([1, 2,])";
+    assertEquals(unformat(json), expected);
+    json = R"([1, 2, [3, 4]])";
+    expected = R"([1, 2, [3, 4,]])";
+    assertEquals(unformat(json), expected);
+    json = R"([1, 2, [3, 4], [5, 6]])";
+    expected = R"([1, 2, [3, 4,] [5, 6],])";
+    assertEquals(unformat(json), expected);
 }
 
 int main() {
