@@ -51,9 +51,9 @@ void assertNotEquals(T a, T b) {
 void runTest(string name, void (*test) ()) {
     try {
         test();
-        cout << name << " PASS" << endl;
+        cout << name << " PASS\n" << endl;
     } catch (bool e) {
-        cout << name << " FAIL" << endl;
+        cout << name << " FAIL\n" << endl;
     }
 }
 
@@ -109,7 +109,7 @@ void testSpecialFeature2() {
   string json =
       "{\"Dog\": \"daisy\", \"Cat\": \"Garfield\", \"Fish\": \"Nemo\"}";
   string expected =
-      "{\"DoG\": \"DaIsY\", \"cAt\": \"GaRfIeLd\", \"FiSh\": \"NeMo\"}";
+      "{\"DoG\": \"DaIsY\", \"CaT\": \"GaRfIeLd\", \"FiSh\": \"NeMo\"}";
   assertEquals(sPoNgEbObCaSe(json), expected);
 }
 
@@ -117,4 +117,5 @@ int main() {
     runTest("testShuffleKeys", testShuffleKeys);
     runTest("testIndent", testIndent);
     runTest("testSpecialFeature1", testSpecialFeature1);
+    runTest("testSpecialFeature2", testSpecialFeature2);
 }

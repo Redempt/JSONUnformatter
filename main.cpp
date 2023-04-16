@@ -54,3 +54,34 @@ string insertIndentation(string json) {
     }
     return out.str();
 }
+
+string sPoNgEbObCaSe(string json) {
+    stringstream out;
+    bool quoted = false;
+    bool upper = true;
+    for (int i = 0; i < json.length(); i++) {
+        char c = json[i];
+        switch (c) {
+            case '\\':
+                out << c;
+                out << json[i + 1];
+                i++;
+                break;
+            case '"':
+                quoted = !quoted;
+                if (quoted) {
+                    upper = true;
+                }
+                out << c;
+                break;
+            default:
+                if (quoted) {
+                    c = upper ? toupper(c) : tolower(c);
+                    upper = !upper;
+                }
+                out << c;
+                break;
+        }
+    }
+    return out.str();
+}
