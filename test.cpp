@@ -106,16 +106,11 @@ void testSpecialFeature1() {
 }
 
 void testSpecialFeature2() {
-  // each Json item is moved x spaces similar to a caesar cypher, x can be
-  // specified or random, does not affect nested data, only the highest level
-  // key:pairs
   string json =
       "{\"Dog\": \"daisy\", \"Cat\": \"Garfield\", \"Fish\": \"Nemo\"}";
   string expected =
-      "{\"Fish\": \"Nemo\", \"Dog\": \"daisy\", \"Cat\": \"Garfield\"}";
-  assertEquals(ceaserUnformat(json, 1), expected);
-  expected = "{\"Cat\": \"Garfield\", \"Fish\": \"Nemo\", \"Dog\": \"daisy\"}";
-  assertEquals(ceaserUnformat(json, -1), expected);
+      "{\"DoG\": \"DaIsY\", \"cAt\": \"GaRfIeLd\", \"FiSh\": \"NeMo\"}";
+  assertEquals(sPoNgEbObCaSe(json), expected);
 }
 
 int main() {
