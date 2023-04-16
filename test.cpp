@@ -59,7 +59,7 @@ void runTest(string name, void (*test) ()) {
 
 void testIndent() {
     string jsonString = "{\"Dog\": {\"Name\" : \"Daisy\", \"Breed\" : \"Beagle\"}}";
-    string expectedFormat = "{\n\t\"Dog\":\n\t\t{\n\t\t\t\"Name\" : \"Daisy\",\n\t\t\t\t\"Breed\" : \"Beagle\"\n\t\t\t\t\t}\n\t\t\t\t\t\t}";
+    string expectedFormat = "{\n\t\"Dog\": \n\t\t{\n\t\t\t\"Name\" : \"Daisy\",\n\t\t\t\t \"Breed\" : \"Beagle\"\n\t\t\t\t\t}\n\t\t\t\t\t\t}";
     assertEquals(expectedFormat, insertIndentation(jsonString));
 }
 
@@ -108,4 +108,5 @@ void testSpecialFeature1() {
 int main() {
     runTest("testShuffleKeys", testShuffleKeys);
     runTest("testIndent", testIndent);
+    runTest("testSpecialFeature1", testSpecialFeature1);
 }
