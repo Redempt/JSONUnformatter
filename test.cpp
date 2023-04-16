@@ -86,23 +86,23 @@ vector<string> getKeys(string json) {
 }
 
 void testShuffleKeys() {
-    string json = R"({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7, "h": 8, "i": 9, "j": 10})";
-    auto keys = getKeys(json);
-    string unformatted = unformat(json);
-    auto shuffledKeys = getKeys(unformatted);
-    assertNotEquals(keys, shuffledKeys);
+  string json = R"({"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7, "h": 8, "i": 9, "j": 10})";
+  auto keys = getKeys(json);
+  string unformatted = shuffleKeys(json);
+  auto shuffledKeys = getKeys(unformatted);
+  assertNotEquals(keys, shuffledKeys);
 }
 
 void testSpecialFeature1() {
-    string json = R"([1, 2])";
-    string expected = R"([1, 2,])";
-    assertEquals(unformat(json), expected);
-    json = R"([1, 2, [3, 4]])";
-    expected = R"([1, 2, [3, 4,]])";
-    assertEquals(unformat(json), expected);
-    json = R"([1, 2, [3, 4], [5, 6]])";
-    expected = R"([1, 2, [3, 4,] [5, 6],])";
-    assertEquals(unformat(json), expected);
+  string json = R"([1, 2])";
+  string expected = R"([1, 2,])";
+  assertEquals(trailingCommas(json), expected);
+  json = R"([1, 2, [3, 4]])";
+  expected = R"([1, 2, [3, 4,]])";
+  assertEquals(trailingCommas(json), expected);
+  json = R"([1, 2, [3, 4], [5, 6]])";
+  expected = R"([1, 2, [3, 4,], [5, 6],])";
+  assertEquals(trailingCommas(json), expected);
 }
 
 void testSpecialFeature2() {
